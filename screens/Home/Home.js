@@ -36,10 +36,10 @@ const Home = () => {
             <Search onSearch={(value) => console.log(value)} />
         </View>
         <SingleDonationItem 
-        uri={require('../../assets/stickers-cactus-cartoon-illustration.jpg.jpg')} 
+        uri={"../../assets/stickers-cactus-cartoon-illustration.jpg.jpg"} 
         badgeTitle={"Environment"} 
         donationTitle={"Tree Cactus"} 
-        price={65} />
+        price={100} />
         </SafeAreaView>
     )
 }

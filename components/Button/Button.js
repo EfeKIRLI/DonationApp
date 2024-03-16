@@ -7,7 +7,7 @@ import style from "../Button/style";
 const Button = (props) => { 
     return ( 
             <Pressable 
-            disabled={props.isDisabled} 
+            disabled={props.isDisabled}
             style={[style.button, props.isDisabled && style.disabled ]}
              onPress={() => { 
                 props.onPress()
