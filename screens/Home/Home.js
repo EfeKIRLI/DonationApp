@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import style from "../Home/style";
-import { View,Text } from "react-native";
+import { View } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 
@@ -15,6 +15,8 @@ import SingleDonationItem from "../../components/SingleDonationItem/SingleDonati
 
 
 const Home = () => { 
+
+
     return ( 
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
         
@@ -35,11 +37,23 @@ const Home = () => {
         <View> 
             <Search onSearch={(value) => console.log(value)} />
         </View>
+
+        <View style={{flexDirection:'row', justifyContent:'space-between',paddingHorizontal:20}}>
         <SingleDonationItem 
-        uri={"../../assets/stickers-cactus-cartoon-illustration.jpg.jpg"} 
+        uri={require('../../assets/cactus.jpeg')}
         badgeTitle={"Environment"} 
         donationTitle={"Tree Cactus"} 
-        price={100} />
+        price={100}
+         />
+
+        <SingleDonationItem 
+        uri={require('../../assets/cactus.jpeg')}
+        badgeTitle={"Environment"} 
+        donationTitle={"Tree Cactus"} 
+        price={100}
+         />
+
+         </View>
         </SafeAreaView>
     )
 }
