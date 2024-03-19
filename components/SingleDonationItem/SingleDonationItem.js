@@ -28,7 +28,7 @@ const SingleDonationItem = (props) => {
 export default SingleDonationItem;
 
 SingleDonationItem.propTypes = { 
-    uri:PropTypes.string.isRequired, 
+    uri:PropTypes.string.isRequired,
     badgeTitle:PropTypes.string.isRequired,
     donationTitle: PropTypes.string.isRequired,
     price:PropTypes.number.isRequired,

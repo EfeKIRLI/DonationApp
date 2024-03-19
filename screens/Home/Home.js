@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import style from "../Home/style";
-import { View } from "react-native";
+import { Pressable, View,Text } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 
@@ -12,13 +12,24 @@ import Tab from "../../components/Tab/Tab";
 import Badge from "../../components/Badge/Badge";
 import Search from "../../components/Search/Search";
 import SingleDonationItem from "../../components/SingleDonationItem/SingleDonationItem";
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { updatedFirstName } from "../../redux/reducer/User";
 
 
 const Home = () => { 
 
+    const user = useSelector(state => state.user )  //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
+    // console.log(user)
+    // güncelleme yapabilmek için "dispatch" kullanılacak.
+    const dispatch = useDispatch();
 
     return ( 
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
+            {/* <Header title={"EFEEEE"} /> */}
+            <Header title={user.firstName + " " + user.lastName + " " + user.userId} />
+            <Pressable onPress={() => dispatch(updatedFirstName({firstName:'J'}))} > 
+                <Text> Update to firstName !</Text>
+            </Pressable>
         
         {/* <Text> Hello </Text>
         <Header title={"Efe S.K."} type={1}/>

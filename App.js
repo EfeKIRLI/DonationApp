@@ -6,7 +6,9 @@ import 'react-native-gesture-handler';
 import MainNavigation from './navigation/MainNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { Provider } from 'react-redux';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import store from './redux/store';
 
 
 export default function App() {
@@ -38,9 +40,12 @@ export default function App() {
     // </View>
     // </View>
     // </SafeAreaView>
+
+    <Provider store={store}>
     <NavigationContainer>
       <MainNavigation/>
     </NavigationContainer>
+    </Provider>
     
  
   );
