@@ -8,7 +8,8 @@ const style = StyleSheet.create({
     headerIntroText : {
         fontSize:16,
         lineHeight:19,
-        fontWeight:'400'
+        fontWeight:'400',
+        color:'#636776'
     }
 });
 
