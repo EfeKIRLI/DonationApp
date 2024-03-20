@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import style from "../Home/style";
-import { Pressable, View,Text } from "react-native";
+import { Pressable, View,Text, ScrollView } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 
@@ -26,11 +26,17 @@ const Home = () => {
     return ( 
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
             {/* <Header title={"EFEEEE"} /> */}
-            <Header title={user.firstName + " " + user.lastName + " " + user.userId} />
+            <ScrollView showsVerticalScrollIndicator={false} >
+            <View style={style.header}>
+              <Text style={style.headerIntroText}> Hello! </Text>
+              <Header title={user.firstName + " " + user.lastName[0] + "." + user.userId +" 👋"} />
+            </View>
+            </ScrollView>
+            
             <Pressable onPress={() => dispatch(updatedFirstName({firstName:'J'}))} > 
+            {/* dispatch state'i güncellemek ve store'a kaydetmek(yazdırmak)için kullanıldı. */}
                 <Text> Update to firstName !</Text>
             </Pressable>
-        
         {/* <Text> Hello </Text>
         <Header title={"Efe S.K."} type={1}/>
         <Header title={"Efe S.K."} type={2}/>
