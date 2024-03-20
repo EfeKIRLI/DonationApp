@@ -9,6 +9,8 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import {persistor} from "./redux/store"
 
 
 export default function App() {
@@ -42,9 +44,11 @@ export default function App() {
     // </SafeAreaView>
 
     <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}> 
     <NavigationContainer>
       <MainNavigation/>
     </NavigationContainer>
+    </PersistGate>
     </Provider>
     
  

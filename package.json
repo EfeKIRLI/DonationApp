@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
+    "@react-native-async-storage/async-storage": "^1.23.0",
     "@react-native-masked-view/masked-view": "0.3.0",
     "@react-navigation/native": "^6.1.16",
     "@react-navigation/stack": "^6.3.28",
@@ -25,7 +26,8 @@
     "react-native-screens": "~3.29.0",
     "react-redux": "^9.1.0",
     "redux": "^5.0.1",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
