@@ -33,6 +33,7 @@ const Search = (props) => {
         <Pressable style={style.searchInputContainer} onPress={() => handleFocus()} >
             <FontAwesome name={'search'} size={24} color={'#25C0FF'} />
             <TextInput 
+            placeholder={props.placeholder}
             ref={textInputRef} 
             style={style.searchInput}
             value={search}
@@ -43,10 +44,12 @@ const Search = (props) => {
 }
 
 Search.defaultProps = { 
-    onSearch: () => {}
+    onSearch: () => {},
+    placeholder:'Search'
 }
 
 Search.propTypes = { 
-    onSearch : PropTypes.func
+    onSearch : PropTypes.func,
+    placeholder:PropTypes.string
 }
 export default Search;

@@ -1,21 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { 
+const initialState = {
     firstName: 'John',
     lastName: 'Doe',
     userId: 1,
+    profileImage: '../../assets/user.png',
 }
 export const User = createSlice({
-    name : 'user',
-    initialState:initialState,
-    reducers: { 
-        updatedFirstName :(state,action) => {
+    name: 'user',
+    initialState: initialState,
+    reducers: {
+        updatedFirstName: (state, action) => {
             state.firstName = action.payload.firstName
         },
+
+        resetToInitialState: () => {
+            return initialState
+        }
     },
 });
 
-export const {updatedFirstName} = User.actions;
+export const { updatedFirstName, resetToInitialState } = User.actions;
 export default User.reducer;
 
 
