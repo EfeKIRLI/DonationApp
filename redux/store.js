@@ -1,15 +1,17 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
-import User from "./reducer/User";
 import logger from "redux-logger";
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {persistReducer,persistStore} from "redux-persist";
+import User from "./reducer/User";
+import categories from "./reducer/categories";
 
 
 
 const rootReducer = combineReducers({ 
    user : User,
+   categories: categories,
 });
 
 const configuration = { 
@@ -23,7 +25,7 @@ const configuration = {
 const persistedReducer = persistReducer(configuration, rootReducer );
 
 const store = configureStore({ 
-    // reducer:rootReducer,
+    // reducer:rootReducer, 
     reducer:persistedReducer,
 
     middleware: getDefaultMiddleware => {  

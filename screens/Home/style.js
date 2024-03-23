@@ -30,8 +30,21 @@ const style = StyleSheet.create({
     },
     highlightedImage: { 
         width:'100%',
-        height:170,
-        marginTop:50,
+        height:160,
+        marginTop:30,
+        // backgroundColor:'red'
+    },
+
+    categories : { 
+        marginLeft:24,
+        marginTop:20,
+    },
+    categoryItem : { 
+        marginRight:1
+    },
+    categoryHeader : { 
+        marginTop:8,
+        // marginBottom: 16
     }
     
 });

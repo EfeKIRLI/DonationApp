@@ -15,10 +15,10 @@ const Tab = (props) => {
     console.log(width);
     return ( 
             <Pressable 
-            disabled={props.isInactive} 
+            // disabled={props.isInactive} 
             style={[style.Tab, props.isInactive && style.isInactiveTab, tabWidth ]}
              onPress={() => { 
-                props.onPress()
+                props.onPress(props.tabId)
                 console.log('Pressed the highlight!!!!')
                 }} > 
 
@@ -40,6 +40,7 @@ Tab.default = {
 }
 
 Tab.propTypes = { 
+    tabId : PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     isInactive: PropTypes.bool,
     onPress:PropTypes.func,

@@ -14,16 +14,21 @@ import Search from "../../components/Search/Search";
 import SingleDonationItem from "../../components/SingleDonationItem/SingleDonationItem";
 import { UseSelector, useDispatch, useSelector } from "react-redux";
 import { resetToInitialState, updatedFirstName } from "../../redux/reducer/User";
+import { FlatList } from "react-native-gesture-handler";
+import { updateSelectedCategoryId } from "../../redux/reducer/categories";
 
 
 const Home = () => {
 
-    const user = useSelector(state => state.user)  //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
+    const user = useSelector(state => state.user)  // state'i okumak için useSelecktor kullan.
+    //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
     // console.log(user)
-    // güncelleme yapabilmek için "dispatch" kullanılacak.
-    const dispatch = useDispatch();
+
+    const dispatch = useDispatch();  // güncelleme yapabilmek için "dispatch" kullanılacak.
     // dispatch(resetToInitialState())
 
+    const categories = useSelector(state => state.categories)
+    console.log(categories)
 
     // const [img, setImg] = useState()
 
@@ -64,9 +69,26 @@ const Home = () => {
                 </View>
                 <Pressable>
                     <Image
-                    style={style.highlightedImage} 
-                    source={require('../../assets/highlighted_image.png')} resizeMode={'contain'}/>
+                        style={style.highlightedImage}
+                        source={require('../../assets/highlighted_image.png')} resizeMode={'contain'} />
                 </Pressable>
+                <View style={style.categoryHeader}>
+                    <Header title={'Select Category'} type={2} />
+                </View>
+                <View style={style.categories}/>
+                   <FlatList 
+                   horizontal={true}
+                   showsHorizontalScrollIndicator={false}
+                   data={categories.categories} 
+                   renderItem={({item}) => 
+                   <View style={style.categoryItem} 
+                   key={item.categoryId} > 
+                   <Tab 
+                   tabId={item.categoryId}
+                   onPress={(value) => dispatch(updateSelectedCategoryId(value))}
+                   title={item.name} isInactive={item.categoryId !== categories.selectedCategoryId} />
+                   </View> }
+                   /> 
             </ScrollView>
 
             <Pressable onPress={() => dispatch(updatedFirstName({ firstName: 'J' }))} >
