@@ -5,7 +5,7 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {persistReducer,persistStore} from "redux-persist";
 import User from "./reducer/User";
-import categories from "./reducer/categories";
+import categories from "./reducer/Categories";
 
 
 

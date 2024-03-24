@@ -15,7 +15,7 @@ import SingleDonationItem from "../../components/SingleDonationItem/SingleDonati
 import { UseSelector, useDispatch, useSelector } from "react-redux";
 import { resetToInitialState, updatedFirstName } from "../../redux/reducer/User";
 import { FlatList } from "react-native-gesture-handler";
-import { updateSelectedCategoryId } from "../../redux/reducer/categories";
+import { updateSelectedCategoryId } from "../../redux/reducer/Categories";
 
 
 const Home = () => {
