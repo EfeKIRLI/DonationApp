@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import style from "../Home/style";
+import style from "./style";
 import { Pressable, View, Text, ScrollView, Image } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
@@ -23,6 +23,7 @@ const Home = () => {
     const user = useSelector(state => state.user)  // state'i okumak için useSelecktor kullan.
     //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
     // console.log(user)
+    const donations = useSelector(state => state.donations )
 
     const dispatch = useDispatch();  // güncelleme yapabilmek için "dispatch" kullanılacak.
     // dispatch(resetToInitialState())
@@ -33,15 +34,49 @@ const Home = () => {
     // const [img, setImg] = useState()
 
 
-    // useEffect(() => {
-    //     console.log('--', user.profileImage)
 
 
-    //     return () => {
+    const [categoryPage, setCategoryPage] = useState(1); // default olarak ilk sayfa 
+    const [categoryList, setCategoryList] = useState([]) // kaydırma yapınca gerektiğinde daha fazla öğe eklenmesi.
+    const [isLoadingCategories, setIsLoadingCategories] = useState(false)
+    const categoryPageSize = 4  // category'ler kaç öğe olmalı , kullanıcılar aradıkça sayfa başına kaç öğe düşmeli.
 
-    //     }
-    // }, [])
+    useEffect(() => {
+        console.log('run this function')
+     },[categories.selectedCategoryId])
 
+    console.log('this is our current donations state ' ,donations)
+
+    useEffect(() => {    // sayfa yüklendiğinde bazı öğelerin görüntülenmesi gerekecek.
+        setIsLoadingCategories(true)
+
+        console.log('asdasdad')
+        let newPage = pagination(categories.categories, categoryPage, categoryPageSize)
+        setCategoryList(
+            newPage
+        );
+        // category sayfası arttırılması gerekecek 
+        setCategoryPage(categoryPage + 1)
+        setIsLoadingCategories(false)
+        // ilk sayfanın verilerini zaten alıyor, bu yüzden kategori sayfa ikiyi öcenki çekim(fetch) + (1) bir olarak ayarlarız.
+    }, [])
+
+    useEffect(() => {    // sayfa yüklendiğinde bazı öğelerin görüntülenmesi gerekecek.
+        console.log('list', categoryList)
+    }, [categoryList])
+
+
+    const pagination = (items, pageNumber, pageSize) => {   // pagination fonskiyonu oluşturulmalı 
+        const startIndex = (pageNumber - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        if (startIndex >= items.length) {   // başlangıç indeksi, sahip olunan tüm öğe listesinden daha fazla ve ya eşit ise.
+            return []; // nohing to return 
+        }
+        return items.slice(startIndex, endIndex)
+    };
+
+    // pageNumber : bulunduğumuz sayfa 
+    // pageSize : sayfa boyutuna ihtiyaç var. 
 
     return (
         <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
@@ -75,25 +110,47 @@ const Home = () => {
                 <View style={style.categoryHeader}>
                     <Header title={'Select Category'} type={2} />
                 </View>
-                <View style={style.categories}/>
-                   <FlatList 
-                   horizontal={true}
-                   showsHorizontalScrollIndicator={false}
-                   data={categories.categories} 
-                   renderItem={({item}) => 
-                   <View style={style.categoryItem} 
-                   key={item.categoryId} > 
-                   <Tab 
-                   tabId={item.categoryId}
-                   onPress={(value) => dispatch(updateSelectedCategoryId(value))}
-                   title={item.name} isInactive={item.categoryId !== categories.selectedCategoryId} />
-                   </View> }
-                   /> 
+                <View style={style.categories} />
+                <FlatList
+                    // onEndReachedThreshold={0.5}
+                    onEndReached={() => {
+                        if (isLoadingCategories) {
+                            return;
+                            // console.log(
+                            //     "User has reached the end and we are getting more data for page number", categoryPage)
+                        };
+                        // setIsLoadingCategories(true);r
+                        let newData = pagination(
+                            categories.categories,
+                            categoryPage,
+                            categoryPageSize
+                        );
+
+                        if (newData.length > 0) {
+                            setCategoryList(prevState => [...prevState, ...newData]);
+                            setCategoryPage(prevState => prevState + 1);
+                        }
+                        setIsLoadingCategories(false);
+                    }}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    //data={categories.categories} 
+                    data={categoryList}
+                    renderItem={({ item }) =>
+                        <View style={style.categoryItem}
+                            key={item.categoryId} >
+                            <Tab
+                                tabId={item.categoryId}
+                                onPress={(value) => dispatch(updateSelectedCategoryId(value))}
+                                title={item.name} isInactive={item.categoryId !== categories.selectedCategoryId}
+                            />
+                        </View>}
+                />
             </ScrollView>
 
             <Pressable onPress={() => dispatch(updatedFirstName({ firstName: 'J' }))} >
                 {/* dispatch state'i güncellemek ve store'a kaydetmek(yazdırmak)için kullanıldı. */}
-                <Text> Update to firstName !</Text>
+                {/* <Text> Update to firstName !</Text> */}
             </Pressable>
             {/* <Text> Hello </Text>
         <Header title={"Efe S.K."} type={1}/>
@@ -109,7 +166,10 @@ const Home = () => {
         <Badge title={"Environment"}/>
             <FontAwesome  name={'search'} /> */}
 
-            <View>
+
+
+
+            {/* <View>
                 <Search onSearch={(value) => console.log(value)} />
             </View>
 
@@ -128,7 +188,7 @@ const Home = () => {
                     price={100}
                 />
 
-            </View>
+            </View> */}
         </SafeAreaView>
     )
 }
