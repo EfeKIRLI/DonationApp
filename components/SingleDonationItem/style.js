@@ -4,7 +4,9 @@ const style = StyleSheet.create({
     image : { 
         width:180,
         height:180,
+        borderRadius:20,
         // resizeMode:'contain'
+        
     },
     badge : { 
         position:'absolute',

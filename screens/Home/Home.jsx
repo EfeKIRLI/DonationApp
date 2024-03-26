@@ -23,7 +23,7 @@ const Home = () => {
     const user = useSelector(state => state.user)  // state'i okumak için useSelecktor kullan.
     //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
     // console.log(user)
-    const donations = useSelector(state => state.donations )
+    const donations = useSelector(state => state.donations)
 
     const dispatch = useDispatch();  // güncelleme yapabilmek için "dispatch" kullanılacak.
     // dispatch(resetToInitialState())
@@ -35,22 +35,29 @@ const Home = () => {
 
 
 
-
+    const [donationItems, setDonationItems] = useState([])
     const [categoryPage, setCategoryPage] = useState(1); // default olarak ilk sayfa 
     const [categoryList, setCategoryList] = useState([]) // kaydırma yapınca gerektiğinde daha fazla öğe eklenmesi.
     const [isLoadingCategories, setIsLoadingCategories] = useState(false)
     const categoryPageSize = 4  // category'ler kaç öğe olmalı , kullanıcılar aradıkça sayfa başına kaç öğe düşmeli.
 
-    useEffect(() => {
-        console.log('run this function')
-     },[categories.selectedCategoryId])
+    // console.log(donationItems)
 
-    console.log('this is our current donations state ' ,donations)
+    // filter için yazıldı.
+    useEffect(() => {
+        const items = donations.items;
+        const filteredItems = items.filter((value) => value.categoryIds.includes(categories.selectedCategoryId));
+
+        setDonationItems(filteredItems)
+        console.log(filteredItems)
+        // console.log(items)
+        console.log('run this function')
+    }, [categories.selectedCategoryId])
+
+    console.log('this is our current donations state ', donations)
 
     useEffect(() => {    // sayfa yüklendiğinde bazı öğelerin görüntülenmesi gerekecek.
         setIsLoadingCategories(true)
-
-        console.log('asdasdad')
         let newPage = pagination(categories.categories, categoryPage, categoryPageSize)
         setCategoryList(
             newPage
@@ -146,6 +153,18 @@ const Home = () => {
                             />
                         </View>}
                 />
+                {donationItems.length > 0 &&  <View style={style.donationItemsContainer} >
+                    {donationItems.map(value => 
+                    <SingleDonationItem 
+                    onPress={selectedDonationId => {console.log(selectedDonationId)}}
+                    donationItemId = {value.donationItemId}
+                    uri={value.image}
+                    donationTitle = {value.name}
+                    key={value.donationItemId} 
+                    price={parseFloat(value.price)}
+                    badgeTitle={categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0].name}
+                     />)}
+                </View> }
             </ScrollView>
 
             <Pressable onPress={() => dispatch(updatedFirstName({ firstName: 'J' }))} >
@@ -165,9 +184,6 @@ const Home = () => {
 
         <Badge title={"Environment"}/>
             <FontAwesome  name={'search'} /> */}
-
-
-
 
             {/* <View>
                 <Search onSearch={(value) => console.log(value)} />
@@ -190,6 +206,7 @@ const Home = () => {
 
             </View> */}
         </SafeAreaView>
+
     )
 }
 

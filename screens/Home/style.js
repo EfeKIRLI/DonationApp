@@ -45,6 +45,12 @@ const style = StyleSheet.create({
     categoryHeader : { 
         marginTop:8,
         // marginBottom: 16
+    },
+
+    donationItemsContainer : {
+        // backgroundColor:'red',
+        marginTop:20,
+        marginHorizontal:24,
     }
     
 });
