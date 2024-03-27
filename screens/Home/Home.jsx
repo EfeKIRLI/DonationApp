@@ -49,9 +49,9 @@ const Home = () => {
         const filteredItems = items.filter((value) => value.categoryIds.includes(categories.selectedCategoryId));
 
         setDonationItems(filteredItems)
-        console.log(filteredItems)
+        console.log( "FILTERED ITEMS : ", filteredItems)
         // console.log(items)
-        console.log('run this function')
+        console.log('***run this function***')
     }, [categories.selectedCategoryId])
 
     console.log('this is our current donations state ', donations)
@@ -153,7 +153,8 @@ const Home = () => {
                             />
                         </View>}
                 />
-                {donationItems.length > 0 &&  <View style={style.donationItemsContainer} >
+                {donationItems.length > 0 &&  
+                <View style={style.donationItemsContainer} >
                     {donationItems.map(value => 
                     <SingleDonationItem 
                     onPress={selectedDonationId => {console.log(selectedDonationId)}}
@@ -162,8 +163,10 @@ const Home = () => {
                     donationTitle = {value.name}
                     key={value.donationItemId} 
                     price={parseFloat(value.price)}
-                    badgeTitle={categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0].name}
+                    badgeTitle={categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0].name} 
+                    // Filter returns a array that's why we have to use [0]. Only it containts one element.
                      />)}
+            
                 </View> }
             </ScrollView>
 
