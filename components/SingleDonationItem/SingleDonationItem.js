@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import style from "../SingleDonationItem/style"; 
 import PropTypes from 'prop-types'
 import { Image,View,Pressable } from "react-native";
@@ -16,7 +16,9 @@ const SingleDonationItem = (props) => {
             <Image resizeMode={'cover'} source={{uri:props.uri}} style={style.image} />
         </View>
         <View style={style.donationInformation}> 
-        <Header title={props.donationTitle} type={3} color={'#0A043C'} />
+        <Header title={props.donationTitle} type={3} color={'#0A043C'} 
+        numberOfLines={1}
+        />
         <View style={style.price}>
         <Header title={'$' + props.price.toFixed(2)} type={3} color={'#156CF7'} />
         </View>

@@ -49,7 +49,7 @@ const Home = () => {
         const filteredItems = items.filter((value) => value.categoryIds.includes(categories.selectedCategoryId));
 
         setDonationItems(filteredItems)
-        console.log( "FILTERED ITEMS : ", filteredItems)
+        console.log("FILTERED ITEMS : ", filteredItems)
         // console.log(items)
         console.log('***run this function***')
     }, [categories.selectedCategoryId])
@@ -153,21 +153,25 @@ const Home = () => {
                             />
                         </View>}
                 />
-                {donationItems.length > 0 &&  
-                <View style={style.donationItemsContainer} >
-                    {donationItems.map(value => 
-                    <SingleDonationItem 
-                    onPress={selectedDonationId => {console.log(selectedDonationId)}}
-                    donationItemId = {value.donationItemId}
-                    uri={value.image}
-                    donationTitle = {value.name}
-                    key={value.donationItemId} 
-                    price={parseFloat(value.price)}
-                    badgeTitle={categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0].name} 
-                    // Filter returns a array that's why we have to use [0]. Only it containts one element.
-                     />)}
-            
-                </View> }
+                {donationItems.length > 0 &&
+                    <View style={style.donationItemsContainer}>
+                        {donationItems.map((value) => (
+                            <View key={value.donationItemId} style={style.singleDonationItem}>
+                                <SingleDonationItem
+                                    key={value.donationItemId}
+                                    onPress={selectedDonationId => { console.log(selectedDonationId) }}
+                                    donationItemId={value.donationItemId}
+                                    uri={value.image}
+                                    donationTitle={value.name}
+                                    price={parseFloat(value.price)}
+                                    badgeTitle={categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0].name}
+                                // Filter returns an array, so we access the first element using [0].
+                                />
+                            </View>
+                        ))}
+                    </View>
+                }
+
             </ScrollView>
 
             <Pressable onPress={() => dispatch(updatedFirstName({ firstName: 'J' }))} >

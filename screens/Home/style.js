@@ -51,6 +51,15 @@ const style = StyleSheet.create({
         // backgroundColor:'red',
         marginTop:20,
         marginHorizontal:24,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        flexWrap:'wrap'
+
+    },
+
+    singleDonationItem : { 
+         maxWidth:'48%',
+         marginBottom:23
     }
     
 });
