@@ -59,7 +59,7 @@ const style = StyleSheet.create({
 
     singleDonationItem : { 
          maxWidth:'48%',
-         marginBottom:24
+         marginBottom:23
     }
     
 });
