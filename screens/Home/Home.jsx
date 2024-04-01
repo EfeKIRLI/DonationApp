@@ -16,9 +16,11 @@ import { UseSelector, useDispatch, useSelector } from "react-redux";
 import { resetToInitialState, updatedFirstName } from "../../redux/reducer/User";
 import { FlatList } from "react-native-gesture-handler";
 import { updateSelectedCategoryId } from "../../redux/reducer/Categories";
+import { Routes } from "../../navigation/Routes";
 
 
-const Home = () => {
+
+const Home = ({navigation}) => {
 
     const user = useSelector(state => state.user)  // state'i okumak için useSelecktor kullan.
     //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
@@ -159,7 +161,11 @@ const Home = () => {
                             <View key={value.donationItemId} style={style.singleDonationItem}>
                                 <SingleDonationItem
                                     key={value.donationItemId}
-                                    onPress={selectedDonationId => { console.log(selectedDonationId) }}
+                                    onPress={selectedDonationId => { // onPress fonksiyonuna navigasyonu SingleDonationItem Rotasına yönlendirmesi söyle.  
+                                        dispatch(updateSelectedDonationId(selectedDonationId))
+                                        navigation.navigate(Routes.SingleDonationItem);
+                                         console.log(selectedDonationId) 
+                                        }}
                                     donationItemId={value.donationItemId}
                                     uri={value.image}
                                     donationTitle={value.name}
