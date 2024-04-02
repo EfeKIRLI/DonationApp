@@ -21,7 +21,7 @@ import { updateSelectedDonationId } from "../../redux/reducer/Donations";
 
 
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
 
     const user = useSelector(state => state.user)  // state'i okumak için useSelecktor kullan.
     //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
@@ -158,24 +158,32 @@ const Home = ({navigation}) => {
                 />
                 {donationItems.length > 0 &&
                     <View style={style.donationItemsContainer}>
-                        {donationItems.map((value) => (
-                            <View key={value.donationItemId} style={style.singleDonationItem}>
-                                <SingleDonationItem
-                                    key={value.donationItemId}
-                                    onPress={selectedDonationId => {    // onPress fonksiyonuna navigasyonu SingleDonationItem Rotasına yönlendirmesi söyle.  
-                                        dispatch(updateSelectedDonationId(selectedDonationId))
-                                        navigation.navigate(Routes.SingleDonationItem, {name:'EFE'}); // parametre ile donation bilgilerini aktarmak için kullanırız 
-                                         console.log(selectedDonationId) 
+                        {donationItems.map((value) => {
+                            const categoryInformation = categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0]
+                            // console.log(Routes.params)
+                            return (
+                                <View key={value.donationItemId} style={style.singleDonationItem}>
+                                    <SingleDonationItem
+                                        key={value.donationItemId}
+                                        onPress={selectedDonationId => {    // onPress fonksiyonuna navigasyonu SingleDonationItem Rotasına yönlendirmesi söyle.  
+                                            dispatch(updateSelectedDonationId(selectedDonationId))
+                                            navigation.navigate(Routes.SingleDonationItem, 
+                                                // { name: 'EFE' }); // parametre ile donation bilgilerini aktarmak için kullanırız 
+                                                { categoryInformation }); // parametre ile donation bilgilerini aktarmak için kullanırız 
+                                            console.log(selectedDonationId)
                                         }}
-                                    donationItemId={value.donationItemId}
-                                    uri={value.image}
-                                    donationTitle={value.name}
-                                    price={parseFloat(value.price)}
-                                    badgeTitle={categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0].name}
-                                // Filter returns an array, so we access the first element using [0].
-                                />
-                            </View>
-                        ))}
+                                        donationItemId={value.donationItemId}
+                                        uri={value.image}
+                                        donationTitle={value.name}
+                                        price={parseFloat(value.price)}
+                                        badgeTitle={categoryInformation.name}
+                                    // Filter returns an array, so we access the first element using [0].
+                                    />
+                                </View>
+                            )
+                        }
+                        )
+                        }
                     </View>
                 }
 
