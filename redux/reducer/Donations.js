@@ -204,7 +204,7 @@ const initialState = {
           },   
     ],
     selectedDonationId: null ,
-    selecetedDonationInformation:{} // should be empty object by its own initial state. + When click here we gonna have state available should content information about the selected donation item
+    selecetedDonationInformation: {} // should be empty object by its own initial state. + When click here we gonna have state available should content information about the selected donation item
 }
 
 const Donations = createSlice( { 
@@ -217,8 +217,9 @@ const Donations = createSlice( {
 
         updateSelectedDonationId: (state,action) => { 
             state.selectedDonationId = action.payload;  //selectedDonationId: null ,
-            state.selecetedDonationInformation = items.find(item => item.donationItemId === action.payload ) ; // that should give us back the object itself.
-
+            state.selecetedDonationInformation = state.items.find(
+              item => item.donationItemId === action.payload ) ; // that should give us back the object itself.
+ 
         }
     }
 })
