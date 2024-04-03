@@ -160,6 +160,7 @@ const Home = ({ navigation }) => {
                     <View style={style.donationItemsContainer}>
                         {donationItems.map((value) => {
                             const categoryInformation = categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0]
+                            console.log("-------------------------------",categoryInformation)
                             // console.log(Routes.params)
                             return (
                                 <View key={value.donationItemId} style={style.singleDonationItem}>
