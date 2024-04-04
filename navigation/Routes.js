@@ -1,4 +1,7 @@
- export const Routes = { 
-    Home : 'Home',
-    SingleDonationItem: 'SingleDonationItem',
- }
+export const Routes = {
+   Login: 'Login',
+   Registration:'Registration',
+   Home: 'Home',
+   SingleDonationItem: 'SingleDonationItem',
+
+}
