@@ -10,7 +10,7 @@ const style = StyleSheet.create({
         justifyContent:'space-between'
     },
     headerIntroText : {
-        fontSize:16,
+        fontSize:17,
         lineHeight:19,
         fontWeight:'400',
         color:'#636776'
