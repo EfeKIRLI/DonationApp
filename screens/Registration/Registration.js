@@ -9,6 +9,7 @@ import Header from "../../components/Header/Header"
 import Button from "../../components/Button/Button"
 import BackButton from "../../components/BackButton/BackButton"
 import { Routes } from "../../navigation/Routes"
+import { createUser } from "../../api/user"
 
 
 const Registration = ({navigation}) => {
@@ -56,7 +57,10 @@ const Registration = ({navigation}) => {
                 />
                 </View>
                 <View style={globalStyle.marginBottom24}> 
-                    <Button title={"Registration"} />
+                    <Button 
+                    title={"Registration"}
+                    onPress={async () => await createUser(fullName,email,password) }
+                    />
                 </View>
                 {/* <Pressable style={style.registrationButton}> 
                     <Header color={'#156CF7'} type={3} title={"Don't have an account?"}/>

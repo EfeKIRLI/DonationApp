@@ -11,6 +11,8 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import store from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import {persistor} from "./redux/store"
+import firebase from '@react-native-firebase/app';
+
 
 
 export default function App() {
@@ -32,6 +34,10 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
+
+
+
+
   return (
   
     // <SafeAreaView style={{flex:1}}> 
