@@ -8,10 +8,10 @@ import { useEffect } from 'react';
 const firebaseConfig = {
     // Your actual Firebase project configuration goes here
     // (API key, auth domain, project ID, etc.)
-    apiKey: "AIzaSyCdmzBE6NjD2FXTSXOifRVA638YIRPalUA",
-    project_number: "940633775110",
-    project_id: "donation-application-f3c59",
-    storage_bucket: "donation-application-f3c59.appspot.com"  ,   
+    // apiKey: "AIzaSyCdmzBE6NjD2FXTSXOifRVA638YIRPalUA",
+    // project_number: "940633775110",
+    // project_id: "donation-application-f3c59",
+    // storage_bucket: "donation-application-f3c59.appspot.com"  ,   
 }
   
   // Initialize Firebase app only if it hasn't been initialized yet
