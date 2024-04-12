@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button"
 import BackButton from "../../components/BackButton/BackButton"
 import { Routes } from "../../navigation/Routes"
 import { createUser } from "../../api/user"
+import { FIREBASE_AUTH } from "../../FirebaseConfig"
 
 
 const Registration = ({navigation}) => {

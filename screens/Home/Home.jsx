@@ -3,8 +3,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import style from "./style";
 import { Pressable, View, Text, ScrollView, Image } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-
-
 import globalStyle from "../../assets/styles/globalStyle";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
@@ -12,7 +10,7 @@ import Tab from "../../components/Tab/Tab";
 import Badge from "../../components/Badge/Badge";
 import Search from "../../components/Search/Search";
 import SingleDonationItem from "../../components/SingleDonationItem/SingleDonationItem";
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetToInitialState, updatedFirstName } from "../../redux/reducer/User";
 import { FlatList } from "react-native-gesture-handler";
 import { updateSelectedCategoryId } from "../../redux/reducer/Categories";

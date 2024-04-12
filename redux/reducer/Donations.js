@@ -207,7 +207,7 @@ const initialState = {
     selecetedDonationInformation: {} // should be empty object by its own initial state. + When click here we gonna have state available should content information about the selected donation item
 }
 
-const Donations = createSlice( { 
+const Donations = createSlice({ 
     name: 'donations',
     initialState: initialState,
     reducers: { 
