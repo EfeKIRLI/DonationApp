@@ -36,11 +36,6 @@ export default function App() {
     return null;
   }
 
-
-  
-
-
-
   return (
 
     // <SafeAreaView style={{flex:1}}> 

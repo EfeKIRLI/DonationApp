@@ -11,6 +11,19 @@ const style = StyleSheet.create({
         marginLeft: 14,
         marginTop:10,
         // position:'relatively'
+    },
+
+    error : { 
+        fontSize:16,
+        color:'#FF0000',
+        marginBottom:24
+    },
+
+    success: { 
+        fontSize:16,
+        color:'#28a745',
+        marginBottom:24
+
     }
 
     // registrationButton :{ 

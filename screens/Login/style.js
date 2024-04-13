@@ -11,7 +11,12 @@ const style = StyleSheet.create({
 
     registrationButton :{ 
         alignItems:'center'
-    }
+    },
+    error : { 
+        fontSize:16,
+        color:'#FF0000',
+        marginBottom:24
+    },
 });
 
 export default style;

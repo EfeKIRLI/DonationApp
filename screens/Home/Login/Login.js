@@ -7,12 +7,15 @@ import Input from "../../components/Input/Input"
 import { TextInput } from "react-native-gesture-handler"
 import Header from "../../components/Header/Header"
 import Button from "../../components/Button/Button"
+import { Routes } from "../../../navigation/Routes"
+import {loginUser} from "../../../api/user"
 
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     console.log(email)
     console.log(password)
@@ -40,8 +43,23 @@ const Login = () => {
                     onChangeText={(value) => setPassword(value)}
                 />
                 </View>
+                { error.length > 0 &&  <Text style={style.error}>{error}</Text>}
                 <View style={globalStyle.marginBottom24}> 
-                    <Button title={"Login"} />
+                    <Button 
+                
+                    onPress={async () => {
+                    let user = await loginUser(email,password)
+                    if (!user.status) {
+                        setError(user.error);
+                    }
+                    else { 
+                        setError('');
+                        navigation.navigate(Routes.Home)
+                    }   
+                }}
+                    title={"Login"} 
+                    isDisabled={email.length < 5 || password.length < 8 } 
+                    />
                 </View>
                 <Pressable style={style.registrationButton}> 
                     <Header color={'#156CF7'} type={3} title={"Don't have an account?"}/>
