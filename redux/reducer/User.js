@@ -1,18 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    firstName: 'John',
-    lastName: 'Doe',
-    userId: 1,
+    isLoggedIn :false,
+    // firstName: 'John',
+    // lastName: 'Doe',
+    // userId: 1,
     profileImage: '../../assets/user.png',
 }
 export const User = createSlice({
     name: 'user',
     initialState: initialState,
     reducers: {
-        updatedFirstName: (state, action) => {
-            state.firstName = action.payload.firstName
+        logIn: (state, action ) => { 
+            return {...state, ...{isLoggedIn:true}, ...action.payload}
         },
+        // updatedFirstName: (state, action) => {
+        //     state.firstName = action.payload.firstName
+        // },
 
         resetToInitialState: () => {
             return initialState
@@ -20,7 +24,8 @@ export const User = createSlice({
     },
 });
 
-export const { updatedFirstName, resetToInitialState } = User.actions;
+// export const { updatedFirstName, resetToInitialState } = User.actions;
+export const { resetToInitialState } = User.actions;
 export default User.reducer;
 
 
