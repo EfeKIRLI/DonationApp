@@ -36,7 +36,7 @@ const Login = ({navigation}) => {
                 <Input
                     secureTextEntry={true}
                     placeholder={"******"}
-                    label={"Password"}
+                    label={"Passwordd"}
                     keyboardType={"email-address"}
                     onChangeText={(value) => setPassword(value)}
                 />
