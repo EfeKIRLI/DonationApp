@@ -33,7 +33,7 @@ export const createUser = async (fullName, email, password) => {
 
         }
         console.log(error)
-        return {error: 'Something went wrontg with your request!'}
+        return {error: 'Something went wrong with your request!'}
 
     }
 }

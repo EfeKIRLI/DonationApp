@@ -9,7 +9,12 @@ const Button = (props) => {
             <Pressable 
             disabled={props.isDisabled}
             style={[style.button, props.isDisabled && style.disabled ]}
-             onPress={() => { 
+             onPress={() => {
+                // if (typeof props.onPress === 'function') {
+                //     props.onPress();
+                //     console.log('Pressed the Donate!!!!');
+                // }
+
                 props.onPress()
                 console.log('Pressed the Donate!!!!')
                 }} > 

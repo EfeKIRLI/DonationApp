@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
 
     const user = useSelector(state => state.user)  // state'i okumak için useSelecktor kullan.
     //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
-    // console.log(user)
+    console.log(user)
     const donations = useSelector(state => state.donations)
 
     const dispatch = useDispatch();  // güncelleme yapabilmek için "dispatch" kullanılacak.
@@ -94,7 +94,8 @@ const Home = ({ navigation }) => {
                     <View>
                         <Text style={style.headerIntroText}> Hello! </Text>
                         <View style={style.username}>
-                            <Header title={user.firstName + " " + user.lastName[0] + "." + user.userId + " 👋"} />
+                            {/* <Header title={user.firstName + " " + user.lastName[0] + "." + user.userId + " 👋"} /> */}
+                            <Header title={user.displayName + user.userId + " 👋"} />
                         </View>
                     </View>
 
