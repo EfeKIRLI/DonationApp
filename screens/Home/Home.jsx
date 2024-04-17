@@ -16,6 +16,7 @@ import { FlatList } from "react-native-gesture-handler";
 import { updateSelectedCategoryId } from "../../redux/reducer/Categories";
 import { Routes } from "../../navigation/Routes";
 import { updateSelectedDonationId } from "../../redux/reducer/Donations";
+// import { resetToInitialState } from "../../redux/reducer/User";
 
 
 
@@ -25,12 +26,12 @@ const Home = ({ navigation }) => {
     //  LOG  {"firstName": "John", "lastName": "Doe", "userId": 1}
     console.log(user)
     const donations = useSelector(state => state.donations)
-
+    console.log(donations,"[][][][][][][][][]")
     const dispatch = useDispatch();  // güncelleme yapabilmek için "dispatch" kullanılacak.
     // dispatch(resetToInitialState())
 
     const categories = useSelector(state => state.categories)
-    console.log(categories)
+    console.log(categories, "{1}{1}{1}{1}{1}{1}") 
 
     // const [img, setImg] = useState()
 
@@ -105,6 +106,18 @@ const Home = ({ navigation }) => {
                             source={require('../../assets/user.png')}
                             style={style.profileImage}
                         />
+
+                        <Pressable onPress={async () => {
+                            dispatch(resetToInitialState())
+                            await logOut();
+                        }
+                        }>
+                            <Header
+                                type={3}
+                                title={"Logout"}
+                                color={"#156CF7"}
+                            />
+                        </Pressable>
                     </View>
                     {/* görünütüyü görebilmek için stil dosyasına ihtiyaç var  */}
                 </View>
@@ -159,7 +172,7 @@ const Home = ({ navigation }) => {
                     <View style={style.donationItemsContainer}>
                         {donationItems.map((value) => {
                             const categoryInformation = categories.categories.filter(val => val.categoryId === categories.selectedCategoryId)[0]
-                            console.log("-------------------------------",categoryInformation)
+                            console.log("-------------------------------", categoryInformation)
                             // console.log(Routes.params)
                             return (
                                 <View key={value.donationItemId} style={style.singleDonationItem}>
@@ -167,7 +180,7 @@ const Home = ({ navigation }) => {
                                         key={value.donationItemId}
                                         onPress={selectedDonationId => {    // onPress fonksiyonuna navigasyonu SingleDonationItem Rotasına yönlendirmesi söyle.  
                                             dispatch(updateSelectedDonationId(selectedDonationId))
-                                            navigation.navigate(Routes.SingleDonationItem, 
+                                            navigation.navigate(Routes.SingleDonationItem,
                                                 // { name: 'EFE' }); // parametre ile donation bilgilerini aktarmak için kullanırız 
                                                 { categoryInformation }); // parametre ile donation bilgilerini aktarmak için kullanırız 
                                             console.log(selectedDonationId)

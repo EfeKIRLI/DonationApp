@@ -63,3 +63,7 @@ export const loginUser = async (email, password) => {
     }
 }
 
+
+export const logOut = async () => { 
+    await auth().signOut()
+}

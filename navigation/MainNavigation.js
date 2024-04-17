@@ -2,7 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Routes } from "./Routes";
 import Home from "../screens/Home/Home";
 import SingleDonationItem from "../screens/SingleDonationItem/SingleDonationItem";
-import Login from "../screens/Login/Login";
+import Login from "../screens/Home/Login/Login";
 import Registration from "../screens/Registration/Registration";
 
 const Stack = createStackNavigator() // fonksiyonu, yığın tabanlı bir navigasyon sistemi oluşturur.

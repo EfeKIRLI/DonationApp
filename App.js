@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import { AppState } from 'react-native'; //Kullanıcı uyg. çıkıp-tekrar giriş yapıldığında token süresinin dolmasını kontrol edilir.Ayrıca Kullanıcınnın bizim appstate'mizi çalıştırıp(madığını) kontrol eder.
 // import { StatusBar } from 'expo-status-bar';
 // import {StyleSheet, Text, View } from 'react-native';
 // import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +13,7 @@ import store from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from "./redux/store"
 import RootNavigation from './navigation/RootNavigation';
+import { useEffect, useRef } from 'react';
 
  
 
@@ -19,6 +21,15 @@ import RootNavigation from './navigation/RootNavigation';
 
 export default function App() {
 
+  const appState = useRef(AppState.currentState)
+
+  useEffect(()=> { 
+
+    const subscription = AppState.addEventListener('change',(nextAppState) => {
+      
+    })
+
+  },[])
 
   const [fontsLoaded] = useFonts({
     'Inter-Black': require('./assets/fonts/Inter-Black.ttf'),
