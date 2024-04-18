@@ -14,6 +14,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from "./redux/store"
 import RootNavigation from './navigation/RootNavigation';
 import { useEffect, useRef } from 'react';
+import { checkToken } from './api/user';
 
  
 
@@ -25,9 +26,20 @@ export default function App() {
 
   useEffect(()=> { 
 
-    const subscription = AppState.addEventListener('change',(nextAppState) => {
-      
-    })
+    const subscription = AppState.addEventListener('change', async nextAppState => {
+      if (appState.current.match(/inactive|background/) && nextAppState === 'active' ) 
+      {
+        // we are coming from background to the foreground.
+        //Kullanıcı uyg.dan çıkıp tekar geri gelmesi gibi.
+        console.log('You have come back into the app') 
+        await checkToken()
+      }
+
+      appState.current = nextAppState;
+    });
+        checkToken();
+
+    console.log('Application has rendered')
 
   },[])
 
