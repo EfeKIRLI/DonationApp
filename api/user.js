@@ -1,8 +1,9 @@
 // import firebase from '@react-native-firebase/app'
-import { FIREBASE_AUTH } from "../FirebaseConfig"
+// import { FIREBASE_AUTH } from "../FirebaseConfig"
 import { updateToken } from "../redux/reducer/User";
-// import auth from '@react-native-firebase/auth';
+import {auth} from '@react-native-firebase/auth';
 import store from "../redux/store";
+import { getAuth } from "firebase/auth";
 
 
 
@@ -12,7 +13,8 @@ import store from "../redux/store";
 //Asenkron bir işlevi çalıştırmak için await anahtar kelimesini kullanabilirsiniz. Bu, işlemin tamamlanmasını bekler ve ardından işlemin sonucunu bir değişkene atar.
 
 
-const auth = FIREBASE_AUTH
+// const auth = FIREBASE_AUTH
+// const auth = getAuth();
 
   
 export const createUser = async (fullName, email, password) => { 
